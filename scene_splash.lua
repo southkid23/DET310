@@ -2,6 +2,7 @@
 -- SCENE NAME
 -- Scene notes go here
 ---------------------------------------------------------------------------------
+local globals = require( "globals" )
 
 local storyboard = require( "storyboard" )
 local scene = storyboard.newScene()
@@ -32,7 +33,7 @@ function scene:createScene( event )
   startButton.y = display.contentCenterY + 80
   
   local function onTap( event )
-    storyboard.gotoScene( "game" )
+    storyboard.gotoScene( "scene_menu" )
   end
   startButton:addEventListener( "tap", onTap )
   
@@ -40,7 +41,7 @@ function scene:createScene( event )
 
 end
 
---[[
+
 -- Called BEFORE scene has moved onscreen:
 function scene:willEnterScene( event )
   local group = self.view
@@ -90,7 +91,7 @@ function scene:overlayEnded( event )
   local overlay_name = event.sceneName  -- name of the overlay scene
 
 end
-]]--
+
 ---------------------------------------------------------------------------------
 -- END OF YOUR IMPLEMENTATION
 ---------------------------------------------------------------------------------
@@ -98,7 +99,7 @@ end
 -- "createScene" event is dispatched if scene's view does not exist
 scene:addEventListener( "createScene", scene )
 
---[[ "willEnterScene" event is dispatched before scene transition begins
+-- "willEnterScene" event is dispatched before scene transition begins
 scene:addEventListener( "willEnterScene", scene )
 
 -- "enterScene" event is dispatched whenever scene transition has finished
@@ -121,6 +122,6 @@ scene:addEventListener( "overlayBegan", scene )
 -- "overlayEnded" event is dispatched when an overlay scene is hidden/removed
 scene:addEventListener( "overlayEnded", scene )
 
---]]-------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
 
 return scene
