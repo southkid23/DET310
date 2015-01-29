@@ -4,7 +4,7 @@ local scene = composer.newScene()
 ----Psysics----
 local physics = require "physics"
 physics.start()
-physics.setGravity(0, 100)
+physics.setGravity(0, 1)
 
 function flyUp(event)
 	
@@ -35,15 +35,45 @@ function scene:create(event)
   background.x = 250
   background.y = 200
 
+
+
   ----Player -----
   local rocket = display.newImage("img/ship-inverted.png")
   rocket:scale (-0.5, -0.5)
   rocket.x = 200
   rocket.y = 250
-  physics.addBody(rocket, "dynamic", {density-.1, bounce=0.1, })
+  physics.addBody(rocket, "dynamic", {density=.1, bounce=0.1, })
 
 
-  line1 = display.newImage("line-inverted.png")
+  line1 = display.newImage("img/line-inverted.png")
+    line1.x = 500
+    line1.y = 100
+    line1.speed = math.random(2,6)
+    line1.initY = line1.y
+    line1.amp = math.random(20,100)
+    line1.angle = math.random(1,360)
+    physics.addBody(line1, "static", {density=.1, bounce=0.1, friction=.2, radius=12})
+
+	
+	line2 = display.newImage("img/line-inverted.png")
+    line2.x = 500
+    line2.y = 100
+    line2.speed = math.random(2,6)
+    line2.initY = line2.y
+    line2.amp = math.random(20,100)
+    line2.angle = math.random(1,360)
+    physics.addBody(line2, "static", {density=.1, bounce=0.1, friction=.2, radius=12})
+	
+
+	line3 = display.newImage("img/line-inverted.png")
+    line3.x = 500
+    line3.y = 100
+    line3.speed = math.random(2,6)
+    line3.initY = line3.y
+    line3.amp = math.random(20,100)
+    line3.angle = math.random(1,360)
+    physics.addBody(line3, "static", {density=.1, bounce=0.1, friction=.2, radius=12})
+
 
 end
 
