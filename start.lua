@@ -11,12 +11,16 @@ function scene:createScene(event)
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	background = display.newImage("img/bg.png")
 	screenGroup:insert(background)
 	background.x = display.contentCenterX
 	background.y = display.contentCenterY
 =======
 	background = display.newImage("img/start.jpg")
+=======
+	background = display.newImage("start.png")
+>>>>>>> parent of 6c2d238... Wasn't working but now a little
 =======
 	background = display.newImage("start.png")
 >>>>>>> parent of 6c2d238... Wasn't working but now a little
