@@ -4,26 +4,19 @@ local scene = composer.newScene()
 ----Psysics----
 local physics = require "physics"
 physics.start()
-physics.setGravity(0, 1)
+physics.setGravity(0, 3)
 
 function flyUp(event)
 	
-   if event.phase == "began" then
-       
-		if gameStarted == false then
-			 player.bodyType = "dynamic"
-			 instructions.alpha = 0
-			 tb.alpha = 1
-			 addColumnTimer = timer.performWithDelay(1000, addColumns, -1)
-			 moveColumnTimer = timer.performWithDelay(2, moveColumns, -1)
-			 gameStarted = true
-			 player:applyForce(0, -300, player.x, player.y)
-		else 
-       
-	    player:applyForce(0, -600, player.x, player.y)
-		
-      end
-	end
+  if event.phase == "began" then
+     
+    physics.setGravity(0,-3)
+
+  elseif event.phase == "ended" then
+
+    physics.setGravity(0,3)
+
+  end
 end
 
 function scene:create(event)
@@ -38,11 +31,12 @@ function scene:create(event)
 
 
   ----Player -----
-  local rocket = display.newImage("img/ship-inverted.png")
+  local rocket = display.newImage("img/ship.png")
   rocket:scale (-0.5, -0.5)
   rocket.x = 200
   rocket.y = 250
   physics.addBody(rocket, "dynamic", {density=.1, bounce=0.1, })
+  rocket.gravityScale = 6.0
 
 
   line1 = display.newImage("img/line-inverted.png")
