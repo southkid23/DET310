@@ -4,17 +4,17 @@ local scene = composer.newScene()
 ----Psysics----
 local physics = require "physics"
 physics.start()
-physics.setGravity(0, 3)
+physics.setGravity(1, 3)
 
 function flyUp(event)
 	
   if event.phase == "began" then
      
-    physics.setGravity(0,-3)
+    physics.setGravity(1,-3)
 
   elseif event.phase == "ended" then
 
-    physics.setGravity(0,3)
+    physics.setGravity(1,3)
 
   end
 end
@@ -39,34 +39,28 @@ function scene:create(event)
   rocket.gravityScale = 6.0
 
 
-  line1 = display.newImage("img/line-inverted.png")
-    line1.x = 500
-    line1.y = 100
-    line1.speed = math.random(2,6)
-    line1.initY = line1.y
-    line1.amp = math.random(20,100)
-    line1.angle = math.random(1,360)
-    physics.addBody(line1, "static", {density=.1, bounce=0.1, friction=.2, radius=12})
+  local line1 = display.newImage("img/line-inverted.png")
+  line1.x = 1000
+  line1.y = 750
+  line1:scale(.5, .5)
+  line1:rotate(90)
+  --line1.fill = { 1, 0, 0.5 }
 
-	
-	line2 = display.newImage("img/line-inverted.png")
-    line2.x = 500
-    line2.y = 100
-    line2.speed = math.random(2,6)
-    line2.initY = line2.y
-    line2.amp = math.random(20,100)
-    line2.angle = math.random(1,360)
-    physics.addBody(line2, "static", {density=.1, bounce=0.1, friction=.2, radius=12})
-	
+  local nw, nh = line1.width*0.003, line1.height*0.005;
+  physics.addBody(line1, "kinematic", { shape={-nw,-nh,nw,-nh,nw,nh,-nw,nh} });
+  line1:setLinearVelocity(0,-150)
 
-	line3 = display.newImage("img/line-inverted.png")
-    line3.x = 500
-    line3.y = 100
-    line3.speed = math.random(2,6)
-    line3.initY = line3.y
-    line3.amp = math.random(20,100)
-    line3.angle = math.random(1,360)
-    physics.addBody(line3, "static", {density=.1, bounce=0.1, friction=.2, radius=12})
+  local line2 = display.newImage("img/line-inverted.png")
+  line2.x = 700
+  line2.y = 150
+  line2:scale(.5, .5)
+  line2:rotate(90)
+  --line1.fill = { 1, 0, 0.5 }
+
+  local nw, nh = line2.width*0.003, line2.height*0.005;
+  physics.addBody(line2, "kinematic", { shape={-nw,-nh,nw,-nh,nw,nh,-nw,nh} });
+  line2:setLinearVelocity(0,150)
+
 
 
 end
